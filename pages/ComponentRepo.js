@@ -13,13 +13,17 @@ const ArrowFunction2 = _ =>
   <h1>I am arrow function 2</h1>
   </div>
 
+export function MyComponent() {
+  return <h1>My Component!</h1>
+}
+
 export function CompA(props) {
     
     const {myProp1, myProp2, myProp3, MyProp4, myProp5} = props;
     
     useEffect(() => {
       console.log("Component A Use Effect");
-    })
+    }, [myProp1])
 
     return (
       <>
@@ -30,8 +34,6 @@ export function CompA(props) {
         <div>My Prop3: {myProp3.toString()}</div>
         <div>My Prop4: {<MyProp4/>}</div>
         <div>My Prop5: {JSON.stringify(myProp5)}</div>
-
-
       </>
     )
   }
@@ -61,16 +63,19 @@ export function CompA(props) {
       });
     }
 
-
     render() {
       
       const {myValue} = this.state;
+      const {myProp1, myProp2:MyNewComp} = this.props;
+
       return (
         <>
           <h1>Component C</h1>
           Current Value: <h1>{this.state.myValue}</h1>
           <button onClick={() => this.changeState(myValue + 1)}>+</button>
 			    <button onClick={() => this.changeState(myValue - 1)}>-</button>
+          <div>My Prop1: {myProp1}</div>
+          <MyNewComp />
         </>
       );
     }

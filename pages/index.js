@@ -1,5 +1,7 @@
-import {CompA, CompC} from './ComponentRepo';
+import {CompA, CompC, MyComponent} from './ComponentRepo';
 import React, {useState, useEffect} from 'react'
+
+
 
 function Home() {
 
@@ -9,7 +11,7 @@ function Home() {
 	const [otherValue, setOtherValue] = useState(100);
 
 	useEffect(() => {
-		console.log("Use Effect Called for Other Value");
+		console.log("Use Effect Home Component");
 	}, [])
 	
 
@@ -23,12 +25,21 @@ function Home() {
 			<button onClick={() => setOtherValue(otherValue + 10)}>+</button>
 			<button onClick={() => setOtherValue(otherValue - 10)}>-</button>
 			<hr/>
-			<CompA 
+{/* {			<CompA 
 				myProp1={stateValue}
 				myProp2="My Custom Value"
 				myProp3={true}
 				MyProp4={() => <div>New JSX Passed as a Prop</div>}
 				myProp5={{item1: 2, item2: 7}}
+			/>} */}
+			<CompC myProp1={stateValue}
+					myProp2 = {() => <CompA
+						myProp1={stateValue}
+						myProp2="My Custom Value"
+						myProp3={true}
+						MyProp4={() => <div>New JSX Passed as a Prop</div>}
+						myProp5={{item1: 2, item2: 7}}
+					/>}
 			/>
    	</div>
 
